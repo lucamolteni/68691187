@@ -22,21 +22,21 @@ import  java.lang.Double;
 global List results;
 
 rule "rule-1"
+   lock-on-active true
    when
        $map:Map(this.get("RC_NUM")  > 0);
    then
        $map.put("RULE_RES","NOTPASS");
        $map.put("ISELSE", "FALSE");
-       $map.put("RC_NUM", 0d);
        update($map);
        System.out.println("Match rule-1.");
-       results.add("Match rule-1.");
-
+              results.add("Match rule-1.");
 end
 rule "rule-2"
+   lock-on-active true
    when
        $map:Map(this["ISELSE"] != "TRUE");
    then
-       results.add("Match rule-2.");
+          results.add("Match rule-2.");
        System.out.println("Match rule-2.");
 end
